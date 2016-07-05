@@ -25,14 +25,34 @@ function fizzBuzz(num){
 
 //Problem 3
 
+var num = 8;
+var result = "";
+
+for(var x = 0; x < num; x++){
+   for(var y = 0; y < num; y++) {
+     if((x + y) % 2 === 0) {
+       result += "#";
+     } else {
+       result += " ";
+     }
+   }
+   result += "\n";
+}
+
+console.log(result);
+
 
 //Chapter 3
 
 //Problem 1
 
-function min(a, b){
-    return Math.min(a, b);
-};
+function min(a, b) {
+   if (a < b) {
+     return a;
+   } else {
+     return b;
+   }
+}
 
 //Chapter 4
 
