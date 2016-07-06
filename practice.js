@@ -38,6 +38,8 @@ function min(a, b) {
 }
 
 //Problem 2
+
+//solution 1
 function isEven(n){
 	if (n == 0) {
   	return true;
@@ -46,9 +48,16 @@ function isEven(n){
   } else if (n < 1) {
   	return isEven(-n);
   } else {
-   	return isEven(n - 2)
+   	return isEven(n - 2);
   }
 };
+
+//refactored solution
+function isEven(n){
+	if (n === 0 || n === 1) return n === 0;
+  return isEven(n < 1 ? -n : n - 2);
+};
+
 
 //Problem 3
 function countChar(str, char) {
@@ -100,6 +109,51 @@ function sum(array) {
 
 console.log(sum(range(1, 10)));
 
+//refactored solution
+
+var result = [];
+
+function range(start, end, step = 1) {
+   step = start > end ? -Math.abs(step) : Math.abs(step);
+   for (var i = start; start > end ? i >= end : i <= end; i += step) {
+     result.push(i);
+   }
+   return result;
+}
+
+function sum(array) {
+  function plus(a, b) { return a + b; }
+  return array.reduce(plus);
+}
+
+
+//Problem 2
+var arr = [];
+
+function reverseArray(array){
+   for(var i = array.length - 1; i >= 0; i--) {
+     arr.push(array[i]);
+   }
+   return arr;
+}
+
+function reverseArrayInPlace(array) {
+
+   var left = null;
+   var right = null;
+
+   for (left = 0, right = array.length - 1; left < right; left += 1, right -=1) {
+
+      var temporary = array[left];
+      array[left] = array[right];
+      array[right] = temporary;
+
+   }
+
+   return array;
+
+}
+
 //////////////CHAPTER 5
 
 //Problems 1 + 2
@@ -149,22 +203,27 @@ var ANCESTRY_FILE = "[\n  " + [
 
 var ancestry = JSON.parse(ANCESTRY_FILE);
 var byName = {};
+var century = {};
+
 function average(array) {
   function plus(a, b) { return a + b; }
   return array.reduce(plus) / array.length;
 }
-var century = {};
+
 ancestry.forEach(function(person){
   if (!century[Math.ceil(person.died/100)]) century[Math.ceil(person.died/100)] = [];
   century[Math.ceil(person.died/100)].push(person.died - person.born);
 })
+
 for (item in century) {
   century[item] = average(century[item]);
 }
 console.log(century);
+
 ancestry.forEach(function(person) {
   byName[person.name] = person;
 });
+
 function ages(ancestry) {
   return ancestry.filter(function(person){
     return byName[person.mother];
