@@ -1,4 +1,4 @@
-//Chapter 2
+//////////////CHAPTER 2
 
 //Problem 1
 var hash = "";
@@ -10,15 +10,8 @@ while (hash.length <= 7) {
 //Problem 2
 function fizzBuzz(num){
   for (var i = 0; i <= num; i++) {
-    if (i % 3 === 0 && i % 5 === 0) {
-      console.log("FizzBuzz");
-    } else if (i % 3 === 0) {
-      console.log("Fizz");
-    } else if (i % 5 === 0) {
-      console.log("Buzz");
-    } else {
-      console.log(i);
-    }
+    result = !(i % 3) ? !(i % 5) ? "FizzBuzz" : "Fizz" : !(i % 5) ? "Buzz" : i;
+    console.log(result);
   };
 };
 
@@ -30,31 +23,74 @@ var result = "";
 
 for(var x = 0; x < num; x++){
    for(var y = 0; y < num; y++) {
-     if((x + y) % 2 === 0) {
-       result += "#";
-     } else {
-       result += " ";
-     }
+     result += (x + y) % 2 ? "#" : " ";
    }
    result += "\n";
 }
 
 console.log(result);
 
+//////////////CHAPTER 3
 
-//Chapter 3
+//Problem 1
+function min(a, b) {
+   return a < b ? a : b;
+}
+
+//Problem 2
+function isEven(n){
+	if (n == 0) {
+  	return true;
+  } else if (n == 1) {
+  	return (false);
+  } else if (n < 1) {
+  	return isEven(-n);
+  } else {
+   	return isEven(n - 2)
+  }
+};
+
+//Problem 3
+function countChar(str, char) {
+var counter = 0;
+for (var i = 0; i < str.length; i++)
+   if (str.charAt(i) === char) {
+     counter ++;
+   }
+console.log(counter);
+}
+
+///////////////CHAPTER 4
 
 //Problem 1
 
-function min(a, b) {
-   if (a < b) {
-     return a;
-   } else {
-     return b;
-   }
+var result = [];
+
+function range(start, end, step) {
+  if (step == undefined) {
+    step = 1;
+  }
+  if (start > end) {
+    for(var i = start; i >= end; i -= step) {
+      result.push(i);
+    }
+  }
+  else {
+    for(var i = start; i <= end; i += step) {
+      result.push(i);
+    }
+  }
+  return result;
 }
 
-//Chapter 4
+function sum(array) {
+  function plus(a, b) { return a + b; }
+  return array.reduce(plus);
+}
+
+console.log(sum(range(1, 10)));
+
+//////////////CHAPTER 5
 
 //Problems 1 + 2
 
